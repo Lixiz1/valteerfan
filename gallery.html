@@ -261,33 +261,31 @@
             document.getElementById('imageModal').style.display = 'none';
         }
 
-        // Переименование арта
-        function renameArt(index) {
-            const newName = prompt('Введите новое название для арта:', savedArts[index].name || `Арт #${index + 1}`);
-            
-            if (newName && newName.trim() !== '') {
-                if (typeof savedArts[index] === 'string') {
-                    savedArts[index] = {
-                        data: savedArts[index],
-                        name: newName.trim()
-                    };
-                } else {
-                    savedArts[index].name = newName.trim();
-                }
-                
-                localStorage.setItem('fanArts', JSON.stringify(savedArts));
-                renderGallery();
-            }
-        }
+        // Функция для переименования арта
+function renameArt(buttonElement) {
+    const artCard = buttonElement.closest('.fan-art');
+    const titleElement = artCard.querySelector('.art-info h3'); // Ищем заголовок
+    const oldTitle = titleElement.textContent;
+    
+    const newTitle = prompt("Введите новое название:", oldTitle);
+    
+    if (newTitle && newTitle !== oldTitle) {
+        titleElement.textContent = newTitle; // Меняем текст на странице
+        alert("Название изменено!");
+    }
+}
 
-        // Удаление арта
-        function deleteArt(index) {
-            if (confirm('Точно удалить этот арт?')) {
-                savedArts.splice(index, 1);
-                localStorage.setItem('fanArts', JSON.stringify(savedArts));
-                renderGallery();
-            }
+       // Функция для удаления арта из списка
+function deleteArt(buttonElement) {
+    if (confirm("Точно удалить этот арт?")) {
+        // Находим карточку арта (родительский элемент кнопки)
+        const artCard = buttonElement.closest('.fan-art');
+        if (artCard) {
+            artCard.remove(); // Удаляем элемент со страницы
+            alert("Арт удален локально (до перезагрузки страницы)");
         }
+    }
+}
 
         // Загрузка нового арта
         function uploadFanArt() {
