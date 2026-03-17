@@ -54,16 +54,42 @@
 			
         }
 	
-
-/* Эффект при наведении на контейнер или саму ссылку */
-.hero-avatar-container:hover .hero-avatar {
-    transform: scale(1.1) rotate(3deg);
+/* Контейнер для центрирования (если нужно) */
+.hero-avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Отступ снизу */
 }
-		
 
+/* Ссылка-обертка */
+.hero-avatar-container a {
+    text-decoration: none; /* Убираем подчеркивание, если вдруг есть */
+    display: block; /* Чтобы ссылка занимала весь размер картинки */
+}
 
+/* Сама аватарка - ИСПРАВЛЕННЫЙ БЛОК */
+.hero-avatar {
+    /* Фиксированный размер, как у участников */
+    width: 130px; 
+    height: 130px;
+    
+    border-radius: 50%; /* Делаем круглой */
+    object-fit: cover; /* Чтобы фото не сплющивалось внутри круга */
+    
+    /* Плавность анимации */
+    transition: 0.5s; 
+    display: block;
 
-        
+    /* Добавим свечение (по желанию, как у Valteer) */
+    border: 4px solid #ff4dff; 
+    box-shadow: 0 0 20px #ff4dff;
+}
+
+/* Анимация при наведении */
+.hero-avatar-container a:hover .hero-avatar {
+    transform: scale(1.1) rotate(3deg);
+}  
         .feature-list { list-style: none; padding: 0; }
         .feature-list li { margin: 10px 0; padding-left: 20px; border-left: 2px solid #ff4dff; }
 
@@ -91,7 +117,7 @@
             </div>
             <h1 class="title">Valteer (Лина)</h1>
             <p class="subtitle" style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                Российская стримерша на платформе Twitch, известная своим уникальным стилем общения и созданием крепкого, преданного сообщества. 
+                Cтримерша русегмента на платформе Twitch, известная своим уникальным стилем общения и созданием крепкого, преданного сообщества. 
                 Проводит трансляции в категориях Just Chatting и различных игровых разделах.
             </p>
         </section>
