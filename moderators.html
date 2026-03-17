@@ -1,0 +1,75 @@
+<DOCUMENT filename="moderators.html">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Модераторы | VALTEER</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Те же стили, что и в members.html */
+        .members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .member-avatar { width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 15px; object-fit: cover; display: block; transition: 0.5s; }
+        .ava-m { border: 4px solid #00ff00; box-shadow: 0 0 15px #00ff00; }
+        .member-card { text-align: center; }
+        .member-card:hover .member-avatar { transform: scale(1.1) rotate(3deg); }
+        .role { font-weight: bold; text-transform: uppercase; font-size: 0.85em; margin-bottom: 10px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="members.html" class="nav-link active">Участники</a>
+        <a href="blog.html" class="nav-link">Блог</a>
+    </nav>
+
+    <div class="moon"></div>
+
+    <div class="container">
+        <h1 class="title">Модераторы</h1>
+        <div class="card">
+            <p style="opacity: 0.8; margin-bottom: 30px;">Наша команда хранителей чата. Каждый из них — надёжный щит сообщества.</p>
+            
+            <div class="members-grid">
+                
+                <div class="member-card">
+                    <img src="mebaer_ava.png" class="member-avatar ava-m" alt="Mebaer">
+                    <h3>Mebaer</h3>
+                    <p class="role" style="color: #00ff00;">Модератор</p>
+                    <p>Опытный семейный модератор, всегда на страже порядка и хорошего настроения.</p>
+                    <a href="https://www.twitch.tv/mebaer" target="_blank" class="button" style="margin-top:15px;">Профиль Mebaer</a>
+                </div>
+
+                <div class="member-card">
+                    <img src="linaryx_ava.png" class="member-avatar ava-m" alt="Linaryx">
+                    <h3>Linaryx</h3>
+                    <p class="role" style="color: #00ff00;">Модератор</p>
+                    <p>Всегда помогает новичкам. Придёт к Вам при первом же упоминании в чате.</p>
+                    <a href="https://www.twitch.tv/linaryx" target="_blank" class="button" style="margin-top:15px;">Профиль Linaryx</a>
+                </div>
+
+                <div class="member-card">
+                    <img src="jacklooney_ava.png" class="member-avatar ava-m" alt="JackLooney">
+                    <h3>JackLooney</h3>
+                    <p class="role" style="color: #00ff00;">Модератор</p>
+                    <p>Любимый модератор Лины, который никакого отношения к модерированию не имеет.</p>
+                    <a href="https://www.twitch.tv/jacklooney" target="_blank" class="button" style="margin-top:15px;">Профиль JackLooney</a>
+                </div>
+
+                <div class="member-card">
+                    <img src="korkahlebanya_ava.png" class="member-avatar ava-m" alt="korkahlebanya">
+                    <h3>korkahlebanya</h3>
+                    <p class="role" style="color: #00ff00;">Модератор</p>
+                    <p>Блудный сын, появляется на стримах только по праздникам.</p>
+                    <a href="https://www.twitch.tv/korkahlebanya" target="_blank" class="button" style="margin-top:15px;">Профиль korkahlebanya</a>
+                </div>
+
+            </div>
+        </div>
+        
+        <a href="members.html" class="button">← Назад к иерархии</a>
+    </div>
+
+    <footer>VALTEER COMMUNITY • 2026</footer>
+</body>
+</html>
+</DOCUMENT>

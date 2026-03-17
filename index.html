@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>VALTEER | Домик Valteer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для вкладок истории */
+        .history-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tab-button {
+            background: rgba(145, 71, 255, 0.1);
+            border: 1px solid rgba(145, 71, 255, 0.4);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .tab-button:hover, .tab-button.active {
+            background: #9147ff;
+            border-color: #ff4dff;
+            box-shadow: 0 0 10px rgba(145, 71, 255, 0.5);
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border-left: 4px solid #9147ff;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Аватарка */
+        .hero-avatar-container { text-align: center; margin-bottom: 20px; }
+        .hero-avatar {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 4px solid #9147ff;
+            box-shadow: 0 0 25px rgba(145, 71, 255, 0.5);
+            object-fit: cover;
+        }
+        
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { margin: 10px 0; padding-left: 20px; border-left: 2px solid #ff4dff; }
+
+        .follower-count {
+            font-size: 3.2rem;
+            font-weight: bold;
+            color: #ff4dff;
+            text-shadow: 0 0 20px #ff4dff;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav"><a href="index.html" class="nav-link active">Главная</a><a href="members.html" class="nav-link">Участники</a><a href="blog.html" class="nav-link">Блог</a><a href="gallery.html" class="nav-link">Фан-арты</a></nav>
+    
+    <div class="moon"></div>
+    <div id="star-container"></div>
+
+    <div class="container">
+        <section class="hero-section" style="text-align: center; margin-bottom: 50px;">
+            <div class="hero-avatar-container">
+                <img src="avatar.png" alt="Valteer" class="hero-avatar">
+            </div>
+            <h1 class="title">Valteer (Лина)</h1>
+            <p class="subtitle" style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                Российская стримерша на платформе Twitch, известная своим уникальным стилем общения и созданием крепкого, преданного сообщества. 
+                Проводит трансляции в категориях Just Chatting и различных игровых разделах.
+            </p>
+        </section>
+
+        <div class="main-grid">
+            <div class="left-col">
+                <div class="card followers-card" style="text-align: center;">
+                    <div class="follower-label">В нашей семье уже</div>
+                    <div id="follower-count" class="follower-count">...</div>
+                    <div class="follower-label">зрителей</div>
+                </div>
+
+                <div class="card">
+                    <h3>Особенности трансляций</h3>
+                    <ul class="feature-list">
+                        <li>Стримы в маске</li>
+                        <li>Использование VTube <br>модели</li>
+                        <li>Игры и теплое общение</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="card twitch-card">
+                    <div class="twitch-container">
+                        <iframe src="https://player.twitch.tv/?channel=valteer&parent=valteer.netlify.app" 
+                                height="100%" width="100%" frameborder="0" allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2>Социальные сети</h2>
+            <div style="margin-top: 20px;">
+                <a class="button" href="https://www.twitch.tv/valteer" target="_blank">Twitch</a>
+                <a class="button" href="https://t.me/v_valteer" target="_blank">Telegram канал</a>
+                <a class="button" href="https://www.youtube.com/@v_valteer_v" target="_blank">YouTube</a>
+                <a class="button" href="https://www.tiktok.com/@v_valteer_v" target="_blank">TikTok</a>
+                <a class="button" href="https://steamcommunity.com/id/layka9999" target="_blank">Steam</a>
+                <a class="button" href="https://discord.gg/EJC8Frmw" target="_blank">Discord</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 style="text-align: center; margin-bottom: 25px;">История сообщества</h2>
+            
+            <div class="history-tabs">
+                <button onclick="openTab('origin')" class="tab-button active">Начало</button>
+                <button onclick="openTab('lamb')" class="tab-button">Эпоха Барашка</button>
+                <button onclick="openTab('lore')" class="tab-button">Атмосфера</button>
+                <button onclick="openTab('join')" class="tab-button">Присоединиться</button>
+            </div>
+
+            <div id="origin" class="tab-content active">
+                <h3>Все началось с идеи</h3>
+                <p>История нашего круга началась с простых диалогов в чате на Twitch. Именно там зародились первые знакомства, которые позже переросли в нечто большее.</p>
+                <p>Со временем общение переместилось в Telegram, где мы стали настоящей командой, поддерживающей друг друга ежедневно.</p>
+            </div>
+
+            <div id="lamb" class="tab-content">
+                <h3>Новая глава</h3>
+                <p>Знаковый этап в жизни сообщества наступил во время прохождения игры <b>Cult of the Lamb</b>. Стилистика игры и её уютная механика объединения персонажей идеально совпали с настроением наших зрителей.</p>
+            </div>
+
+            <div id="lore" class="tab-content">
+                <h3>Наш вайб</h3>
+                <p>Наше сообщество — это прежде всего про поддержку и общие интересы. У нас сложились свои добрые традиции, локальные шутки и история, которую мы пишем каждый день вместе на трансляциях.</p>
+            </div>
+
+            <div id="join" class="tab-content">
+                <h3>Заходи к нам</h3>
+                <p>Мы всегда открыты для новых людей, которые ценят ламповое общение и уважение друг к другу.</p>
+                <p>Присоединяйся к нам в Telegram или Discord, чтобы всегда быть на связи!</p>
+				<a class="button" href="https://t.me/+zqAXG3Q7hgRlNDhi" target="_blank">Telegram чатик</a>
+                    <a class="button" href="https://discord.gg/EJC8Frmw" target="_blank">Discord</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>С любовью от Valteer • 2026</footer>
+
+    <script>
+        // Переключение вкладок
+        function openTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            
+            contents.forEach(content => content.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Счетчик фолловеров
+        async function updateFollowers() {
+            const countElement = document.getElementById('follower-count');
+            try {
+                const response = await fetch('https://decapi.me/twitch/followcount/valteer');
+                if (response.ok) {
+                    const count = await response.text();
+                    countElement.textContent = parseInt(count).toLocaleString('ru-RU');
+                }
+            } catch (err) { countElement.textContent = "—"; }
+        }
+        updateFollowers();
+        setInterval(updateFollowers, 300000);
+    </script>
+</body>
+</html>
