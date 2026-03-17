@@ -1,1 +1,215 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семья Лунёвых | История любви</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные косметические правки для этой страницы */
+        .family-photo {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 3px solid rgba(145, 71, 255, 0.5);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.6), 0 0 50px rgba(145,71,255,0.3);
+            margin-bottom: 30px;
+            transition: 0.4s;
+        }
+        .family-photo:hover {
+            border-color: #ff4dff;
+            box-shadow: 0 0 50px #9147ff;
+        }
+
+        /* Пара имён — кликабельные заголовки */
+        .name-pair {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0 20px;
+        }
+        .name-link {
+            font-size: clamp(32px, 6vw, 52px);
+            font-weight: 800;
+            text-decoration: none;
+            background: linear-gradient(45deg, #fff, #e0b0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: 0.3s;
+            text-shadow: 0 0 12px #9147ff;
+            letter-spacing: 1px;
+        }
+        .name-link:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px #ff4dff);
+            background: linear-gradient(45deg, #ffd966, #ff4dff);
+            -webkit-background-clip: text;
+        }
+
+        /* Романтичная подпись */
+        .story-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 800px;
+            margin: 30px auto;
+            background: rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 50px 20px 50px 20px;
+            border-left: 5px solid #9147ff;
+            border-right: 5px solid #ff4dff;
+            backdrop-filter: blur(6px);
+        }
+
+        .heart-symbol {
+            color: #ff4dff;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px hotpink);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        @media (max-width:600px) {
+            .detail-grid { grid-template-columns: 1fr; }
+        }
+
+        .milestone {
+            background: rgba(255,255,255,0.02);
+            border-radius: 30px;
+            padding: 25px;
+            backdrop-filter: blur(8px);
+            border: 1px solid #9147ff30;
+            transition: 0.4s;
+        }
+        .milestone:hover {
+            border-color: #ff4dff;
+            box-shadow: 0 0 40px #4d1aff30;
+        }
+        .milestone h3 {
+            font-size: 2rem;
+            color: #ffd966;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #ff4dff;
+            padding-bottom: 10px;
+        }
+        .milestone p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .big-date {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, gold, #ffb3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Падающие звёзды (эффект из style.css) -->
+    <div class="star-fall" style="left:10%; animation-delay:0s;"></div>
+    <div class="star-fall" style="left:30%; animation-delay:2s;"></div>
+    <div class="star-fall" style="left:70%; animation-delay:4s;"></div>
+    <div class="star-fall" style="left:90%; animation-delay:1s;"></div>
+    <div class="star-fall" style="left:50%; animation-delay:3.5s;"></div>
+
+    <!-- Луна (мистическая) -->
+    <div class="moon"></div>
+
+    <!-- Навигация (из стиля, для красоты) -->
+    <nav class="main-nav">
+        <a href="#" class="nav-link">Главная</a>
+        <a href="#" class="nav-link active">Участники</a>
+        <a href="#" class="nav-link">Блог</a>
+        <a href="#" class="nav-link">Фан-арты</a>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container" style="position: relative; z-index: 2;">
+
+        <!-- Совместная фотография (вообразим красивый кадр) -->
+        <img class="family-photo" src="familyphoto.png" 
+             alt="Совместная фотография семьи Лунёвых, счастливы вместе" 
+             onerror="this.src='https://via.placeholder.com/1000x450/1a1a2e/9147ff?text=Лина+и+Евгений+2025'">
+
+        <!-- Кликабельные имена: слева Лина, справа Евгений -->
+        <div class="name-pair">
+            <a href="#" class="name-link" style="text-align: left;">🌙 Лина Лунёва</a>
+            <span class="heart-symbol">⚡💑⚡</span>
+            <a href="#" class="name-link" style="text-align: right;">Евгений Лунёв 🌤️</a>
+        </div>
+
+        <!-- Романтичная вода / предыстория -->
+        <div class="story-text">
+            <span class="big-date">13.06.2025</span> — день, когда две вселенные соединились в одну орбиту.<br>
+            Их встреча произошла не в шумном баре и не на улице, а там, где сейчас начинается большинство великих историй — 
+            <strong style="color:#ffb3ff;">в бескрайних просторах интернета</strong>. 
+            Случайное сообщение, первое «привет», и через экраны телефонов они почувствовали то, что нельзя объяснить алгоритмами — 
+            <span style="color:#ff4dff;">настоящую магию</span>.
+        </div>
+
+        <!-- Детали знакомства и свадьбы с красивой водой -->
+        <div class="detail-grid">
+            <div class="milestone">
+                <h3>✨ С чего всё началось</h3>
+                <p>🧩 <strong>Платформа:</strong> судьба свела их в уютном уголке Instagram (или может быть это был Telegram? история умалчивает детали, но это точно был 2024 год).</p>
+                <p>💬 <strong>Первое сообщение:</strong> Лина написала коммент под фото Евгения с его котом, а он ответил смешной гифкой. Дальше — 3 часа непрерывного чата, словно знали друг друга тысячу жизней.</p>
+                <p>🌍 <strong>Первая встреча в реальности:</strong> парк, дождь, забытый зонт и одно пирожное на двоих. С тех пор не расставались.</p>
+            </div>
+            <div class="milestone">
+                <h3>💍 Свадьба — 13 июня 2025</h3>
+                <p>📆 Этой дате предшествовал год переписок, видеозвонков до утра, 4 совместных путешествия и бесконечные разговоры о будущем.</p>
+                <p>💒 <strong>Церемония:</strong> скромная, но очень тёплая. Вокруг только близкие, в воздухе пахло сиренью, а невеста сияла ярче нашей мистической луны.</p>
+                <p>💞 <strong>Секрет их семьи:</strong> они до сих пор каждый вечер пересматривают тот самый плейлист из первых месяцев знакомства и танцуют на кухне.</p>
+            </div>
+        </div>
+
+        <!-- Ещё одна порция воды, почти поэзия -->
+        <div class="card" style="margin-top: 30px; text-align: center;">
+            <p style="font-size: 1.5rem; margin-bottom: 10px;">🌌 «Интернет — просто инструмент. Настоящее чудо — это то, как два сердца находят друг друга даже через тысячи километров.»</p>
+            <p style="color: #b0b0ff;">Говорят, что в современном мире сложно встретить настоящую любовь. Лина и Евгений доказывают обратное: их любовь родилась из пикселей и превратилась в целую вселенную под названием <strong style="color:#ffb3ff;">Семья Лунёвых</strong>. В их планах — путешествие в Японию, второй ребёнок и кот по имени Люмен.</p>
+            <!-- Тэги (добавим для красоты) -->
+            <div class="tags-container">
+                <span class="tag">#ИсторияЛюбви</span>
+                <span class="tag">#Поженились2025</span>
+                <span class="tag">#Луневы</span>
+                <span class="tag">#ИнтернетСвел</span>
+                <span class="tag">#13Июня</span>
+            </div>
+        </div>
+
+        <!-- маленькая подпись / цитата -->
+        <footer style="margin-top: 50px;">
+            ✨ Семья — там, где тебя слышат даже без слов. ✨
+        </footer>
+    </div>
+
+    <!-- маленький скрипт для красоты (необязательно, просто оживляет имена) -->
+    <script>
+        // Добавим чуточку интерактива: при клике на имена появляется уведомление (вода)
+        document.querySelectorAll('.name-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('💜 ' + link.innerText + ' — это часть большой семьи Лунёвых. Вскоре здесь будет персональная страница.');
+            });
+        });
+    </script>
+</body>
+</html>
