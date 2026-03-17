@@ -5,392 +5,82 @@
     <title>Фан-арты | VALTEER</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .fan-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .fan-art {
-            background: rgba(20, 20, 50, 0.8);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 2px solid rgba(145, 71, 255, 0.3);
-            transition: all 0.4s;
+        .coming-soon-container {
             display: flex;
             flex-direction: column;
-        }
-
-        .fan-art:hover {
-            transform: translateY(-10px);
-            border-color: #ff4dff;
-            box-shadow: 0 0 30px rgba(255, 77, 255, 0.4);
-        }
-
-        .image-container {
-            width: 100%;
-            height: 260px;
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #1a1a2e;
-            transition: transform 0.3s;
-        }
-
-        .image-container img:hover {
-            transform: scale(1.05);
-        }
-
-        .art-info {
-            padding: 15px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .art-title {
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            color: #ff4dff;
-            word-break: break-word;
-        }
-
-        .art-controls {
-            display: flex;
-            gap: 8px;
+            align-items: center;
             justify-content: center;
-        }
-
-        .art-btn {
-            background: rgba(145, 71, 255, 0.3);
-            border: 1px solid #9147ff;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.3s;
-        }
-
-        .art-btn:hover {
-            background: #9147ff;
-            transform: scale(1.05);
-        }
-
-        .art-btn.delete:hover {
-            background: #ff4d4d;
-            border-color: #ff4d4d;
-        }
-
-        .upload-section {
-            background: rgba(145, 71, 255, 0.08);
-            border: 3px dashed #9147ff;
-            border-radius: 18px;
-            padding: 40px;
+            min-height: 70vh;
             text-align: center;
-            margin-bottom: 40px;
         }
-
-        .preview-img {
-            max-width: 100%;
-            max-height: 320px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 4px solid #ff4dff;
-            display: none;
-            object-fit: contain;
-            background: #1a1a2e;
+        .coming-soon-title {
+            font-size: clamp(30px, 5vw, 50px);
+            margin-bottom: 20px;
+            color: #ff4dff;
+            text-shadow: 0 0 20px rgba(255, 77, 255, 0.5);
         }
-
-        /* Модальное окно для предпросмотра */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            cursor: pointer;
+        .loader-dots {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
         }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            object-fit: contain;
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #9147ff;
+            border-radius: 50%;
+            animation: dot-pulse 1.5s infinite ease-in-out;
         }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
 
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            z-index: 1001;
+        @keyframes dot-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 1; box-shadow: 0 0 15px #9147ff; }
         }
     </style>
 </head>
 <body>
-    <nav class="main-nav">
-    <a href="index.html" class="nav-link">Главная</a>
-    <a href="members.html" class="nav-link">Участники</a>
-    <a href="blog.html" class="nav-link">Блог</a>
-    <a href="gallery.html" class="nav-link active">Фан-арты</a>
-</nav>
-
     <div class="moon"></div>
     <div id="star-container"></div>
 
-    <!-- Модальное окно для увеличения изображения -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="community.html" class="nav-link">Участники</a>
+        <a href="gallery.html" class="nav-link active">Фан-арты</a>
+    </nav>
 
     <div class="container">
-        <h1 class="title">Фан-арты</h1>
-
-        <div class="card">
-            <h2 style="color: #ff4dff; text-align: center;">Загрузи свой арт</h2>
-
-            <div class="upload-section">
-                <p style="margin-bottom: 15px; font-size: 1.1em;">Выбери картинку и отправь её в галерею</p>
-                
-                <input type="file" id="artUpload" accept="image/*" style="margin: 15px 0;">
-                <br><br>
-                <button class="button" onclick="uploadFanArt()">Отправить арт</button>
-                <button class="button" onclick="downloadAllArts()" style="background: #00ff00; margin-left: 10px;">
-                    Скачать все арты
-                </button>
-
-                <img id="preview" class="preview-img" alt="Предпросмотр">
+        <div class="coming-soon-container">
+            <h1 class="coming-soon-title">Раздел в разработке</h1>
+            
+            <div class="loader-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
 
-            <h3 style="margin: 40px 0 20px;" id="gallery-title">Галерея (0 артов)</h3>
-            <div class="fan-gallery" id="fanGallery"></div>
+            <div class="card" style="max-width: 500px;">
+                <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                    Мы готовим нечто крутое! Скоро здесь появится галерея ваших потрясающих фан-артов с возможностью управления и модерации.
+                </p>
+                <a href="index.html" class="button">← Вернуться на главную</a>
+            </div>
         </div>
     </div>
 
-    <footer>VALTEER COMMUNITY • 2026</footer>
+    <footer>С любовью от Valteer • 2026</footer>
 
     <script>
-        let savedArts = [];
-
-        // Загрузка артов из LocalStorage при открытии страницы
-        function loadArts() {
-            const saved = localStorage.getItem('fanArts');
-            if (saved) {
-                try {
-                    savedArts = JSON.parse(saved);
-                    // Проверяем, что у каждого арта есть имя, если нет - добавляем
-                    savedArts = savedArts.map((art, index) => {
-                        if (typeof art === 'string') {
-                            return { data: art, name: `Арт #${index + 1}` };
-                        }
-                        return art;
-                    });
-                } catch {
-                    savedArts = [];
-                }
-            }
-            renderGallery();
-        }
-
-        // Отрисовка галереи
-        function renderGallery() {
-            const gallery = document.getElementById('fanGallery');
-            gallery.innerHTML = '';
-
-            savedArts.forEach((art, index) => {
-                const artData = typeof art === 'string' ? { data: art, name: `Арт #${index + 1}` } : art;
-                
-                const div = document.createElement('div');
-                div.className = 'fan-art';
-                div.innerHTML = `
-                    <div class="image-container" onclick="openImageModal('${artData.data}')">
-                        <img src="${artData.data}" alt="Фан-арт ${index + 1}" loading="lazy">
-                    </div>
-                    <div class="art-info">
-                        <div class="art-title" id="title-${index}">${artData.name}</div>
-                        <div class="art-controls">
-                            <button class="art-btn" onclick="renameArt(${index})">✏️ Переименовать</button>
-                            <button class="art-btn delete" onclick="deleteArt(${index})">🗑️ Удалить</button>
-                        </div>
-                    </div>
-                `;
-                gallery.appendChild(div);
-            });
-            
-            // Обновляем заголовок с количеством артов
-            const titleElement = document.getElementById('gallery-title');
-            if (titleElement) {
-                const word = getArtWord(savedArts.length);
-                titleElement.textContent = `Галерея (${savedArts.length} ${word})`;
-            }
-        }
-
-        // Склонение слова "арт"
-        function getArtWord(count) {
-            if (count % 10 === 1 && count % 100 !== 11) return 'арт';
-            if ([2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)) return 'арта';
-            return 'артов';
-        }
-
-        // Открытие модального окна с изображением
-        function openImageModal(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = 'block';
-            modalImg.src = imageSrc;
-        }
-
-        // Закрытие модального окна
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        // Функция для переименования арта
-function renameArt(buttonElement) {
-    const artCard = buttonElement.closest('.fan-art');
-    const titleElement = artCard.querySelector('.art-info h3'); // Ищем заголовок
-    const oldTitle = titleElement.textContent;
-    
-    const newTitle = prompt("Введите новое название:", oldTitle);
-    
-    if (newTitle && newTitle !== oldTitle) {
-        titleElement.textContent = newTitle; // Меняем текст на странице
-        alert("Название изменено!");
-    }
-}
-
-       // Функция для удаления арта из списка
-function deleteArt(buttonElement) {
-    if (confirm("Точно удалить этот арт?")) {
-        // Находим карточку арта (родительский элемент кнопки)
-        const artCard = buttonElement.closest('.fan-art');
-        if (artCard) {
-            artCard.remove(); // Удаляем элемент со страницы
-            alert("Арт удален локально (до перезагрузки страницы)");
-        }
-    }
-}
-
-        // Загрузка нового арта
-        function uploadFanArt() {
-            const input = document.getElementById('artUpload');
-            if (!input.files[0]) {
-                alert("Сначала выбери картинку!");
-                return;
-            }
-
-            const file = input.files[0];
-            
-            // Проверка размера файла (макс 5MB)
-            if (file.size > 5 * 1024 * 1024) {
-                alert("Файл слишком большой! Максимальный размер - 5MB");
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Запрашиваем название для нового арта
-                let artName = prompt('Введите название для арта (необязательно):');
-                if (!artName || artName.trim() === '') {
-                    artName = `Арт #${savedArts.length + 1}`;
-                }
-                
-                // Создаем объект арта
-                const newArt = {
-                    data: e.target.result,
-                    name: artName.trim()
-                };
-                
-                savedArts.unshift(newArt); // добавляем в начало
-                localStorage.setItem('fanArts', JSON.stringify(savedArts));
-                
-                renderGallery();
-                alert("✅ Арт сохранён в галерее!");
-                
-                input.value = '';
-                document.getElementById('preview').style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // Скачивание всех артов
-        function downloadAllArts() {
-            if (savedArts.length === 0) {
-                alert("Пока нет артов для скачивания");
-                return;
-            }
-
-            // Создаем временную ссылку для каждого арта
-            savedArts.forEach((art, index) => {
-                const artData = typeof art === 'string' ? art : art.data;
-                const artName = typeof art === 'string' ? `Арт #${index + 1}` : art.name;
-                
-                const link = document.createElement('a');
-                link.href = artData;
-                link.download = `${artName}.png`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                // Небольшая задержка между скачиваниями
-                if (index < savedArts.length - 1) {
-                    setTimeout(() => {}, 100);
-                }
-            });
-            
-            alert(`Начинается скачивание ${savedArts.length} артов!`);
-        }
-
-        // Предпросмотр при выборе файла
-        document.getElementById('artUpload').addEventListener('change', function() {
-            const preview = document.getElementById('preview');
-            if (this.files[0]) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
-                reader.readAsDataURL(this.files[0]);
-            } else {
-                preview.style.display = 'none';
-            }
-        });
-
-        // Падающие звезды
+        // Добавляем падающие звезды для атмосферы
         function createStar() {
             const star = document.createElement('div');
             star.className = 'star-fall';
             star.style.left = Math.random() * 100 + 'vw';
-            document.getElementById('star-container').appendChild(star);
+            document.body.appendChild(star);
             setTimeout(() => star.remove(), 4000);
         }
         setInterval(createStar, 800);
-
-        // Закрытие модального окна по ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Запуск при загрузке страницы
-        window.onload = loadArts;
     </script>
 </body>
 </html>
