@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль участника | VALTEER</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="moon"></div>
+    <div id="star-container"></div>
+
+    <nav class="main-nav">
+    <a href="../index.html" class="nav-link">Главная</a>
+    <a href="../community.html" class="nav-link active">Участники</a>
+        <a href="../blog.html" class="nav-link">Блог</a>
+    <a href="../gallery.html" class="nav-link">Фан-арты</a>
+</nav>
+
+    <div class="container">
+    <div class="card" style="text-align: center; margin-top: 50px;">
+        <div class="crown-container" id="crown-box" style="display: none;">
+             <img src="https://cdn-icons-png.flaticon.com/512/6941/6941697.png" class="crown-icon">
+        </div>
+        
+        <img src="../legend1_ava.png" class="member-avatar" style="width: 180px; height: 180px; margin-bottom: 20px;">
+        
+        <h1 class="title">PiKaq7</h1>
+        </div>
+</div>
+            
+            
+            <div class="container">
+    <div class="card" style="text-align: center; margin: 50px auto; max-width: 600px;">
+        
+        <h1 id="user-name" class="title">Загрузка...</h1>
+        <p id="user-role" class="role" style="font-size: 1.2em; margin-bottom: 20px;"></p>
+        
+        <div class="card" style="background: rgba(255,255,255,0.05); text-align: left; padding: 20px; border-radius: 15px;">
+            <h3 style="color: #9147ff; margin-bottom: 10px;">О герое чата:</h3>
+            <p id="user-desc">Информация подгружается из летописей VALTEER...</p>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <a href="../community.html" class="button">← Назад к легендам</a>
+        </div>
+    </div>
+</div>
+
+            <a href="../community.html" class="button">← Назад к легендам</a>
+        </div>
+    </div>
+
+    <script>
+        // Функция для получения параметров из URL
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const role = params.get('role');
+        const ava = params.get('ava');
+        const type = params.get('type'); // gold, vip, или l
+
+        if (name) {
+            document.title = `${name} | Профиль VALTEER`;
+            document.getElementById('user-name').textContent = name;
+            document.getElementById('user-role').textContent = role || 'Участник сообщества';
+            document.getElementById('user-ava').src = ava || 'default_ava.png';
+            
+            // Добавляем класс рамки в зависимости от типа
+            if (type) {
+                document.getElementById('user-ava').classList.add('ava-' + type);
+                if (type === 'gold') document.getElementById('crown-box').style.display = 'block';
+            }
+        }
+
+        // Падающие звезды (как на других страницах)
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star-fall';
+            star.style.left = Math.random() * 100 + 'vw';
+            document.getElementById('star-container').appendChild(star);
+            setTimeout(() => star.remove(), 4000);
+        }
+        setInterval(createStar, 800);
+    </script>
+</body>
+</html>
