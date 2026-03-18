@@ -247,7 +247,6 @@ body::before {
     background: linear-gradient(45deg, #9147ff, #ff4dff);
     color: white; text-decoration: none; border-radius: 10px;
     font-weight: bold; transition: 0.3s; border: none; cursor: pointer;
-    
     float: right; /* Это заставит кнопку улететь в правый край */
 }
 
