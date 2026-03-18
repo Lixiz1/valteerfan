@@ -84,6 +84,7 @@ body::before {
 .ava-gold { border: 4px solid #ffd700; box-shadow: 0 0 20px #ffd700; }
 .ava-vip { border: 4px solid #00f2ff; box-shadow: 0 0 15px #00f2ff; }
 .ava-l { border: 3px solid #ffffff; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.ava-m { border: 4px solid #00ff00; box-shadow: 0 0 15px #00ff00; }
 /* Единый стандарт навигации — ЖЕСТКАЯ ФИКСАЦИЯ */
 .main-nav {
     display: flex; 
