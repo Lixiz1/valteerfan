@@ -5,7 +5,7 @@
     <title>Mebaer | VALTEER</title>
     <link rel="stylesheet" href="../style.css">
     <style>
-        /* Стили для аккордеонов (можно вынести в style.css позже) */
+        /* Стили для аккордеонов */
         .accordion {
             background: rgba(145, 71, 255, 0.12);
             border: 1px solid rgba(145, 71, 255, 0.3);
@@ -39,19 +39,18 @@
             transform: rotate(180deg);
         }
 
-       .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 24px;
-    transition: max-height 0.45s ease-out, padding 0.35s ease;
-    background: rgba(20, 20, 50, 0.45);
-}
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px;
+            transition: max-height 0.5s ease-out, padding 0.4s ease;
+            background: rgba(20, 20, 50, 0.45);
+        }
 
-.accordion-content.open {
-    max-height: 9999px;           /* или 9999px / 100vh — любой очень большой */
-    height: auto;
-    padding: 20px 24px;
-}
+        .accordion-content.open {
+            max-height: 5000px; /* большой запас на случай очень длинного текста */
+            padding: 20px 24px;
+        }
 
         .accordion-content p {
             line-height: 1.65;
@@ -97,14 +96,14 @@
                 </div>
             </div>
 
-            <!-- Второй блок -->
+            <!-- Второй блок — дополненный -->
             <div class="accordion">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     Карьерный путь и преемственность
                 </div>
                 <div class="accordion-content">
-                    <p>Мебаер прошёл серьёзную «школу модерации», начав ещё с команды мужа Лины, где оттачивал навыки управления чатом, разрешения конфликтных ситуаций и поддержания атмосферы.</p>
-                    <p>Сейчас он занимает одну из ключевых позиций именно у Лины — это показатель высочайшего уровня доверия и признания его профессионализма.</p>
+                    <p>Мебаер прошёл серьёзную «школу модерации», начав ещё с команды мужа Лины, где он долгое время занимал пост модератора. Именно там он оттачивал навыки управления чатом, разрешения конфликтных ситуаций и поддержания комфортной атмосферы.</p>
+                    <p>В настоящем он является действующим модератором сразу у двух стримеров — и у мужа Лины, и у самой Лины. Это подчёркивает высочайший уровень доверия к нему как к специалисту, способному одновременно поддерживать уютную и безопасную среду в двух разных, но связанных сообществах.</p>
                 </div>
             </div>
 
@@ -115,8 +114,8 @@
                 </div>
                 <div class="accordion-content">
                     <p>В отличие от классического образа «строгого модера», Мебаер — это в первую очередь «вайбовый челик».</p>
-                    <p>Он умеет находить баланс между соблюдением правил и поддержанием дружеской, комфортной атмосферы. Его харизма и чувство юмора делают его не просто модератором, а настоящей душой компании в чате и обсуждениях.</p>
-                    <p>Авторитет Мебаера держится не только на полномочиях, но и на личных качествах — за что его искренне уважают и ценят практически все постоянные зрители.</p>
+                    <p>Он мастерски балансирует между соблюдением правил и поддержанием дружеской, тёплой атмосферы. Его харизма и чувство юмора делают его не просто модератором, а настоящей душой компании в чате и любых обсуждениях.</p>
+                    <p>Авторитет Мебаера держится не только на полномочиях, но и на личных качествах — именно поэтому его искренне уважают и ценят практически все постоянные зрители.</p>
                 </div>
             </div>
 
@@ -127,37 +126,37 @@
 
     <script>
         function toggleAccordion(header) {
-    const content = header.nextElementSibling;
-    const isOpen = content.classList.contains('open');
+            const content = header.nextElementSibling;
+            const isOpen = content.classList.contains('open');
 
-    // Закрываем все аккордеоны
-    document.querySelectorAll('.accordion-content').forEach(el => {
-        el.classList.remove('open');
-        el.style.maxHeight = null;
-    });
-    document.querySelectorAll('.accordion-header').forEach(el => {
-        el.classList.remove('active');
-    });
+            // Закрываем все остальные аккордеоны
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                el.classList.remove('open');
+                el.style.maxHeight = null;
+            });
+            document.querySelectorAll('.accordion-header').forEach(el => {
+                el.classList.remove('active');
+            });
 
-    if (!isOpen) {
-        content.classList.add('open');
-        
-        // Динамически считаем нужную высоту
-        const fullHeight = content.scrollHeight + 80; // + запас на padding/margin
-        content.style.maxHeight = fullHeight + 'px';
+            if (!isOpen) {
+                content.classList.add('open');
+                
+                // Динамически рассчитываем высоту
+                const fullHeight = content.scrollHeight + 100; // +100 запас на отступы/переносы
+                content.style.maxHeight = fullHeight + 'px';
 
-        // На случай изменения размера окна или шрифта — пересчитываем через 100 мс
-        setTimeout(() => {
-            if (content.classList.contains('open')) {
-                content.style.maxHeight = content.scrollHeight + 80 + 'px';
+                // Пересчитываем через 100 мс на случай изменения содержимого
+                setTimeout(() => {
+                    if (content.classList.contains('open')) {
+                        content.style.maxHeight = content.scrollHeight + 100 + 'px';
+                    }
+                }, 100);
+
+                header.classList.add('active');
             }
-        }, 100);
+        }
 
-        header.classList.add('active');
-    }
-}
-
-        // падающие звёзды
+        // Падающие звёзды
         function createStar() {
             const star = document.createElement('div');
             star.className = 'star-fall';
