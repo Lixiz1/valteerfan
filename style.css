@@ -87,11 +87,11 @@ body::before {
 /* Единый стандарт навигации — ЖЕСТКАЯ ФИКСАЦИЯ */
 .main-nav {
     display: flex; 
-    justify-content: center; 
+    /* justify-content: center; <-- ЭТУ СТРОЧКУ МОЖНО УБРАТЬ ИЛИ ОСТАВИТЬ, margin-left её перебьет */
     align-items: center; 
     gap: 20px; 
-    height: 70px;    /* Уменьшили высоту до стандарта блога */
-    padding: 0;      /* Убираем внутренние отступы, чтобы не раздувало */
+    height: 70px;    
+    padding: 0 30px;  /* Добавили боковые отступы, чтобы кнопка не касалась края экрана */
     position: sticky; 
     top: 0; 
     z-index: 1000;
@@ -99,6 +99,19 @@ body::before {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(145, 71, 255, 0.3);
     box-sizing: border-box;
+}
+
+/* Добавь это для кнопки разработчиков */
+.main-nav .button_right {
+    margin-left: auto; /* Магия Flexbox: толкает кнопку максимально вправо */
+}
+
+/* Добавь это, чтобы ссылки ГЛАВНАЯ, БЛОГ и т.д. были по центру */
+.main-nav::before {
+    content: "";
+    margin-right: auto;
+    width: 200px; /* Должно быть примерно равно ширине кнопки "команда разработчиков" */
+    display: block;
 }
 
 .nav-link {
