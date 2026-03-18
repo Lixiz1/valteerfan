@@ -147,8 +147,8 @@
 
         <!-- Совместная фотография (вообразим красивый кадр) -->
         <img class="family-photo" src="familyphoto.png" 
-             alt="Совместная фотография семьи Лунёвых, счастливы вместе" 
-             onerror="this.src='https://via.placeholder.com/1000x450/1a1a2e/9147ff?text=Лина+и+Евгений+2025'">
+             
+            
 
         <!-- Кликабельные имена: слева Лина, справа Евгений -->
         <div class="name-pair">
@@ -196,6 +196,12 @@
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 alert('💜 ' + link.innerText + ' — это часть большой семьи Лунёвых. Вскоре здесь будет персональная страница.');
+            });
+        });
+        document.querySelectorAll('.family-photo').forEach(link => {
+            link.addEventListener('cliick1', (e) => {
+                e.preventDefault();
+                alert('💜 ' + ' Совместная фотография семьи Лунёвых, счастливы вместе. ');
             });
         });
     </script>
