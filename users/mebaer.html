@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mebaer | VALTEER</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Стили для аккордеонов (можно вынести в style.css позже) */
+        .accordion {
+            background: rgba(145, 71, 255, 0.12);
+            border: 1px solid rgba(145, 71, 255, 0.3);
+            border-radius: 12px;
+            margin: 16px auto;
+            max-width: 820px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
 
+        .accordion-header {
+            padding: 16px 24px;
+            cursor: pointer;
+            font-size: 1.18rem;
+            font-weight: bold;
+            color: #ff4dff;
+            background: linear-gradient(to right, rgba(145,71,255,0.18), rgba(255,77,255,0.10));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            font-size: 1rem;
+            transition: transform 0.35s;
+        }
+
+        .accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px;
+            transition: max-height 0.45s ease, padding 0.35s ease;
+            background: rgba(20, 20, 50, 0.45);
+        }
+
+        .accordion-content.open {
+            max-height: 800px; /* запас под текст */
+            padding: 20px 24px;
+        }
+
+        .accordion-content p {
+            line-height: 1.65;
+            margin: 0 0 1.1em 0;
+        }
+
+        .accordion-content p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="moon"></div>
+    <div id="star-container"></div>
+
+    <nav class="main-nav">
+        <a href="../moderators.html" class="button">← Назад к модераторам</a>
+        <a href="../index.html" class="nav-link">Главная</a>
+        <a href="../members.html" class="nav-link">Участники</a>
+        <a href="../blog.html" class="nav-link">Блог</a>
+        <a href="../gallery.html" class="nav-link">Фан-арты</a>
+    </nav>
+
+    <div class="container">
+        <div class="card" style="text-align: center; margin-top: 40px; padding-bottom: 30px;">
+            <img src="../mebaer_ava.png" class="member-avatar ava-m" style="width: 200px; height: 200px; margin: 0 auto 25px; display: block;">
+            <h1 class="title">Mebaer</h1>
+            <p style="font-size: 1.3rem; color: #00ff00; margin-top: 8px; opacity: 0.95;">Хранитель чата • Вайбовый модератор</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card" style="max-width: 860px; margin: 0 auto 40px;">
+
+            <!-- Первый блок -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Ключевая фигура модераторского состава
+                </div>
+                <div class="accordion-content">
+                    <p>Мебаер — один из самых уважаемых и авторитетных участников модераторской команды.</p>
+                    <p>Его присутствие в команде воспринимается как гарантия стабильности, справедливости и поддержания правильного вайба в чате.</p>
+                </div>
+            </div>
+
+            <!-- Второй блок -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Карьерный путь и преемственность
+                </div>
+                <div class="accordion-content">
+                    <p>Мебаер прошёл серьёзную «школу модерации», начав ещё с команды мужа Лины, где оттачивал навыки управления чатом, разрешения конфликтных ситуаций и поддержания атмосферы.</p>
+                    <p>Сейчас он занимает одну из ключевых позиций именно у Лины — это показатель высочайшего уровня доверия и признания его профессионализма.</p>
+                </div>
+            </div>
+
+            <!-- Третий блок -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Личность и вайб
+                </div>
+                <div class="accordion-content">
+                    <p>В отличие от классического образа «строгого модера», Мебаер — это в первую очередь «вайбовый челик».</p>
+                    <p>Он умеет находить баланс между соблюдением правил и поддержанием дружеской, комфортной атмосферы. Его харизма и чувство юмора делают его не просто модератором, а настоящей душой компании в чате и обсуждениях.</p>
+                    <p>Авторитет Мебаера держится не только на полномочиях, но и на личных качествах — за что его искренне уважают и ценят практически все постоянные зрители.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>VALTEER COMMUNITY • 2026</footer>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isOpen = content.classList.contains('open');
+
+            // закрываем все остальные аккордеоны
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                el.classList.remove('open');
+                el.style.maxHeight = null;
+            });
+            document.querySelectorAll('.accordion-header').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // открываем/закрываем выбранный
+            if (!isOpen) {
+                content.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                header.classList.add('active');
+            }
+        }
+
+        // падающие звёзды
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star-fall';
+            star.style.left = Math.random() * 100 + 'vw';
+            document.getElementById('star-container').appendChild(star);
+            setTimeout(() => star.remove(), 4000);
+        }
+        setInterval(createStar, 800);
+    </script>
+</body>
+</html>
