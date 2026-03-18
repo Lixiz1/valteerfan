@@ -4,6 +4,59 @@
     <meta charset="UTF-8">
     <title>Профиль участника | VALTEER</title>
     <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Стили для аккордеона */
+        .accordion {
+            background: rgba(145, 71, 255, 0.12);
+            border: 1px solid rgba(145, 71, 255, 0.3);
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 760px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .accordion-header {
+            padding: 16px 24px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff4dff;
+            background: linear-gradient(to right, rgba(145,71,255,0.15), rgba(255,77,255,0.08));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: rgba(20, 20, 50, 0.4);
+        }
+
+        .accordion-content.open {
+            max-height: 600px; /* достаточно большой запас */
+            padding: 20px 24px;
+        }
+
+        .accordion-content p {
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="moon"></div>
@@ -11,57 +64,63 @@
 
     <nav class="main-nav">
         <a href="../community.html" class="button">← Назад</a>
-    <a href="../index.html" class="nav-link">Главная</a>
-    <a href="../community.html" class="nav-link active">Участники</a>
+        <a href="../index.html" class="nav-link">Главная</a>
+        <a href="../community.html" class="nav-link active">Участники</a>
         <a href="../blog.html" class="nav-link">Блог</a>
-    <a href="../gallery.html" class="nav-link">Фан-арты</a>
-</nav>
+        <a href="../gallery.html" class="nav-link">Фан-арты</a>
+    </nav>
 
     <div class="container">
-    <div class="card" style="text-align: center; margin-top: 50px;">
-        <div class="crown-container" id="crown-box" style="display: none;">
-             <img src="https://cdn-icons-png.flaticon.com/512/6941/6941697.png" class="crown-icon">
-        </div>
-        
-        <img src="../legend1_ava.png" class="member-avatar" style="width: 180px; height: 180px; margin-bottom: 20px;">
-        
-        <h1 class="title">PiKaq7</h1>
-    </div>
-    </div>
-           <div class="container">
-    <div class="card" style="text-align: center;">  
-            <h3 style="color: #9147ff; margin-bottom: 5px;">О герое чата:</h3>
-            <p id="user-desc">Тот, кто первым узрел свет истины и заложил первый камень в фундамент нашего Культа. В эпоху, когда чат был пуст, а микрофон только настраивался, этот герой не побоялся стать Первым Саббером. Именно с его подписки началась официальная история нашего братства. Его имя высечено в золоте на главных вратах VALTEER</p>
-    
-    </div>
-</div>
-
+        <div class="card" style="text-align: center; margin-top: 50px;">
+            <div class="crown-container" id="crown-box" style="display: none;">
+                <img src="https://cdn-icons-png.flaticon.com/512/6941/6941697.png" class="crown-icon">
+            </div>
             
+            <img src="../legend1_ava.png" class="member-avatar" style="width: 180px; height: 180px; margin-bottom: 20px;">
+            
+            <h1 class="title">PiKaq7</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <!-- Аккордеон -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    О PiKaq7
+                </div>
+                <div class="accordion-content" id="pika-desc">
+                    <p>Тот, кто первым узрел свет истины и заложил первый камень в фундамент нашего сообщества. В эпоху, когда чат был пуст, а микрофон только настраивался, этот герой не побоялся стать Первым Саббером. Именно с его подписки началась официальная история нашего братства. Его имя высечено в золоте на главных вратах VALTEER.</p>
+                    
+                    <p style="margin-top: 16px;">PiKaq7 — это не просто ник. Это символ преданности, первый маяк в тёмном космосе чата, который показал остальным, что здесь можно остаться надолго.</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Функция для получения параметров из URL
-        const params = new URLSearchParams(window.location.search);
-        const name = params.get('name');
-        const role = params.get('role');
-        const ava = params.get('ava');
-        const type = params.get('type'); // gold, vip, или l
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isOpen = content.classList.contains('open');
 
-        if (name) {
-            document.title = `${name} | Профиль VALTEER`;
-            document.getElementById('user-name').textContent = name;
-            document.getElementById('user-role').textContent = role || 'Участник сообщества';
-            document.getElementById('user-ava').src = ava || 'default_ava.png';
-            
-            // Добавляем класс рамки в зависимости от типа
-            if (type) {
-                document.getElementById('user-ava').classList.add('ava-' + type);
-                if (type === 'gold') document.getElementById('crown-box').style.display = 'block';
+            // Закрываем все остальные (если будет несколько аккордеонов в будущем)
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                el.classList.remove('open');
+                el.style.maxHeight = null;
+            });
+            document.querySelectorAll('.accordion-header').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Открываем/закрываем текущий
+            if (!isOpen) {
+                content.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                header.classList.add('active');
             }
         }
 
-        // Падающие звезды (как на других страницах)
+        // Падающие звёзды
         function createStar() {
             const star = document.createElement('div');
             star.className = 'star-fall';
@@ -70,6 +129,12 @@
             setTimeout(() => star.remove(), 4000);
         }
         setInterval(createStar, 800);
+
+        // Автоматическое открытие аккордеона при загрузке (опционально)
+        // window.addEventListener('load', () => {
+        //     const firstHeader = document.querySelector('.accordion-header');
+        //     if (firstHeader) toggleAccordion(firstHeader);
+        // });
     </script>
 </body>
 </html>
