@@ -87,11 +87,10 @@ body::before {
 /* Единый стандарт навигации — ЖЕСТКАЯ ФИКСАЦИЯ */
 .main-nav {
     display: flex; 
-    /* justify-content: center; <-- ЭТУ СТРОЧКУ МОЖНО УБРАТЬ ИЛИ ОСТАВИТЬ, margin-left её перебьет */
     align-items: center; 
-    gap: 20px; 
+    justify-content: center; /* Центрирует всё по умолчанию */
     height: 70px;    
-    padding: 0 30px;  /* Добавили боковые отступы, чтобы кнопка не касалась края экрана */
+    padding: 0 30px;
     position: sticky; 
     top: 0; 
     z-index: 1000;
@@ -101,17 +100,25 @@ body::before {
     box-sizing: border-box;
 }
 
-/* Добавь это для кнопки разработчиков */
+/* Эта настройка сработает ТОЛЬКО на странице с кнопкой */
 .main-nav .button_right {
-    margin-left: auto; /* Магия Flexbox: толкает кнопку максимально вправо */
+    position: absolute; /* Кнопка "выходит" из потока и не мешает центру */
+    right: 30px;        /* Прижимаем к правому краю навигации */
 }
 
-/* Добавь это, чтобы ссылки ГЛАВНАЯ, БЛОГ и т.д. были по центру */
-.main-nav::before {
-    content: "";
-    margin-right: auto;
-    width: 200px; /* Должно быть примерно равно ширине кнопки "команда разработчиков" */
-    display: block;
+/* Обычные ссылки всегда будут по центру экрана */
+.nav-link {
+    text-decoration: none; 
+    color: rgba(255, 255, 255, 0.7); 
+    font-weight: bold; 
+    padding: 8px 18px; 
+    border-radius: 10px; 
+    border: 1px solid rgba(145, 71, 255, 0.2); 
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
 }
 
 .nav-link {
