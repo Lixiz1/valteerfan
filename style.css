@@ -223,7 +223,7 @@ body::before {
 }
 .card {
     background: rgba(20, 20, 50, 0.6); backdrop-filter: blur(10px);
-    border-radius: 20px; padding: 30px; margin-bottom: 30px;
+    border-radius: 20px; padding: 30px; margin-bottom: 5px;
     border: 1px solid rgba(145, 71, 255, 0.2); transition: 0.3s;
 }
 .card:hover { border-color: #9147ff; box-shadow: 0 0 30px rgba(145, 71, 255, 0.3); }
