@@ -39,18 +39,19 @@
             transform: rotate(180deg);
         }
 
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 24px;
-            transition: max-height 0.45s ease, padding 0.35s ease;
-            background: rgba(20, 20, 50, 0.45);
-        }
+       .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 24px;
+    transition: max-height 0.45s ease-out, padding 0.35s ease;
+    background: rgba(20, 20, 50, 0.45);
+}
 
-        .accordion-content.open {
-            max-height: 800px; /* запас под текст */
-            padding: 20px 24px;
-        }
+.accordion-content.open {
+    max-height: none;           /* или 9999px / 100vh — любой очень большой */
+    height: auto;
+    padding: 20px 24px;
+}
 
         .accordion-content p {
             line-height: 1.65;
