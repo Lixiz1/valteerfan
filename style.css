@@ -216,15 +216,19 @@ body::before {
 /* Контейнеры и Карточки */
 .container { max-width: 1000px; margin: auto; padding: 40px 20px; }
 .title {
-    text-align: center; font-size: clamp(40px, 8vw, 70px); margin-bottom: 20px;
+    text-align: center; font-size: clamp(40px, 8vw, 70px); margin-bottom: 5px;
     background: linear-gradient(45deg, #9147ff, #ff4dff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     transition: 0.5s;
 }
 .card {
-    background: rgba(20, 20, 50, 0.6); backdrop-filter: blur(10px);
-    border-radius: 20px; padding: 30px; margin-bottom: 5px;
-    border: 1px solid rgba(145, 71, 255, 0.2); transition: 0.3s;
+    background: rgba(20, 20, 50, 0.6); 
+    backdrop-filter: blur(10px);
+    border-radius: 20px; 
+    padding: 20px;        /* Уменьшили с 30 до 20 */
+    margin-bottom: 15px;  /* Уменьшили с 30 до 15 */
+    border: 1px solid rgba(145, 71, 255, 0.2); 
+    transition: 0.3s;
 }
 .card:hover { border-color: #9147ff; box-shadow: 0 0 30px rgba(145, 71, 255, 0.3); }
 
