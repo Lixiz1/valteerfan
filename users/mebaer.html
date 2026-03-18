@@ -127,25 +127,35 @@
 
     <script>
         function toggleAccordion(header) {
-            const content = header.nextElementSibling;
-            const isOpen = content.classList.contains('open');
+    const content = header.nextElementSibling;
+    const isOpen = content.classList.contains('open');
 
-            // закрываем все остальные аккордеоны
-            document.querySelectorAll('.accordion-content').forEach(el => {
-                el.classList.remove('open');
-                el.style.maxHeight = null;
-            });
-            document.querySelectorAll('.accordion-header').forEach(el => {
-                el.classList.remove('active');
-            });
+    // Закрываем все аккордеоны
+    document.querySelectorAll('.accordion-content').forEach(el => {
+        el.classList.remove('open');
+        el.style.maxHeight = null;
+    });
+    document.querySelectorAll('.accordion-header').forEach(el => {
+        el.classList.remove('active');
+    });
 
-            // открываем/закрываем выбранный
-            if (!isOpen) {
-                content.classList.add('open');
-                content.style.maxHeight = content.scrollHeight + 'px';
-                header.classList.add('active');
+    if (!isOpen) {
+        content.classList.add('open');
+        
+        // Динамически считаем нужную высоту
+        const fullHeight = content.scrollHeight + 80; // + запас на padding/margin
+        content.style.maxHeight = fullHeight + 'px';
+
+        // На случай изменения размера окна или шрифта — пересчитываем через 100 мс
+        setTimeout(() => {
+            if (content.classList.contains('open')) {
+                content.style.maxHeight = content.scrollHeight + 80 + 'px';
             }
-        }
+        }, 100);
+
+        header.classList.add('active');
+    }
+}
 
         // падающие звёзды
         function createStar() {
